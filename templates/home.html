@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script type = "text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script type = "text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type = "text/javascript"  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Datatable -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+    <script type = "text/javascript"  src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type = "text/javascript"  src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script type = "text/javascript"  src="https://cdn.datatables.net/plug-ins/1.10.15/dataRender/datetime.js"></script>
+
+    <style>
+        a:link{
+            text-decoration: none;
+        }
+    </style>
+
+  </head>
+
+  <body class="container-fluid">
+  <!-- navbar -->
+  	<nav class="navbar navbar-dark bg-dark">
+          <span class="navbar-brand mb-0 h1">iETR DEMO</span>
+    </nav>
+
+      <div class="card">
+          <div class="card-body">
+            <div class="mt-4">
+                <!-- table -->
+                <table id="proxies" class="display table nowrap responsive" style="width: 100%">
+                  <thead>
+                    <tr>
+                      {% for header in headings %}
+                        <th>{{header}}</th>
+                      {% endfor %}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for row in data %}
+                        <tr>
+                            <td>{{row['OUTAGE_NO']}}</td>
+                            <td>{{row['TIME_STAMP']}}</td>
+                            <td>{{row['DISTRICT_NO']}}</td>
+                            <td>{{row['MAX_CUST_AFF']}}</td>
+                            <td>{{DEVCAT_dict.get(row['DEVCAT'])}}</td>
+                            <td contenteditable='true'>{{row['EST_RES_DATE']}}</td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+            </div>
+          </div>
+      </div> <br>
+
+
+    <div class="row">
+        <div class="col-sm">
+            <button type="button" class="btn btn-success" style="margin-left:170px">Pull</button>
+        </div>
+        <div class="col-sm">
+            <button type="button" class="btn btn-success" style="margin-left:170px"><a href="/my-link/" style="color:white">Get ETR Values</a></button>
+        </div>
+        <div class="col-sm">
+            <button type="button" class="btn btn-success" style="margin-left:170px">Push</button>
+        </div>
+    </div>
+    <br>
+  </body>
+
+    <script>
+        $(document).ready(function() {
+            var table = $('#proxies').DataTable();
+        });
+    </script>
+  
+</html>
+
+
+
+
+
+
